@@ -1,0 +1,26 @@
+body {
+  background-color: #000;
+  color: #00ff00;
+  font-family: "VT323", monospace;
+  overflow: hidden;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 400px;
+  max-width: 80%;
+  height: auto;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: lighter;
+}
