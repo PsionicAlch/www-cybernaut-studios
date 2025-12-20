@@ -3,7 +3,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-ormorant-garamond: "Cormorant Garamond", serif;
+  --font-cormorant-garamond: "Cormorant Garamond", serif;
   --font-playfair-display: "Playfair Display", serif;
   --font-crimson-pro: "Crimson Pro", serif;
   --font-inter: "Inter", sans-serif;
