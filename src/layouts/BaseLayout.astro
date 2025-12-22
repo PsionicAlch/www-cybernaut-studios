@@ -3,21 +3,30 @@ import "../styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-    
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <head>
+    <meta charset="utf-8" />
 
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- <script type="text/partytown" defer src="https://cloud.umami.is/script.js" data-website-id="59d393ea-6914-4eff-86fe-4a5bb2f04af7"></script> -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-		<title>Cybernaut Studios</title>
-	</head>
-	<body class="bg-gruvbox-bg-0 text-gruvbox-fg-0">
-		<slot />
-	</body>
+    {
+      import.meta.env.PROD && (
+        <script
+          type="text/partytown"
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="59d393ea-6914-4eff-86fe-4a5bb2f04af7"
+        />
+      )
+    }
+
+    <title>Cybernaut Studios</title>
+  </head>
+  <body class="bg-gruvbox-bg-0 text-gruvbox-fg-0">
+    <slot />
+  </body>
 </html>
