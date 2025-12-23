@@ -1,11 +1,19 @@
 import { useMemo } from "react";
 
-import { Mesh, OrthographicCamera, PlaneGeometry, RepeatWrapping, Scene, ShaderMaterial, WebGLRenderTarget } from "three";
+import {
+  Mesh,
+  OrthographicCamera,
+  PlaneGeometry,
+  RepeatWrapping,
+  Scene,
+  ShaderMaterial,
+  WebGLRenderTarget,
+} from "three";
 
 import { useThree } from "@react-three/fiber";
 
-import noiseVertexShader from '../../shaders/noise/vertex.glsl';
-import noiseFragmentShader from '../../shaders/noise/fragment.glsl';
+import noiseVertexShader from "../../shaders/noise/vertex.glsl";
+import noiseFragmentShader from "../../shaders/noise/fragment.glsl";
 
 export default function useNoiseTexture(width = 128, height = 128) {
   const { gl } = useThree();
@@ -28,7 +36,7 @@ export default function useNoiseTexture(width = 128, height = 128) {
       generateMipmaps: false,
       wrapS: RepeatWrapping,
       wrapT: RepeatWrapping,
-    })
+    });
 
     gl.setRenderTarget(renderTarget);
     gl.render(scene, camera);

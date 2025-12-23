@@ -1,6 +1,6 @@
 uniform float uTime;
 uniform vec3 uInnerColor;
-uniform vec3 uOutterColor;
+uniform vec3 uOuterColor;
 uniform sampler2D uNoiseTexture;
 
 varying vec2 vUv;
@@ -29,7 +29,7 @@ void main() {
     uv.y *= 2.0;
     uv.x += uTime / ((i * 10.0) + 1.0);
 
-    vec3 ringColor = mix(uInnerColor, uOutterColor, progress);
+    vec3 ringColor = mix(uInnerColor, uOuterColor, progress);
 
     float noiseIntensity = texture(uNoiseTexture, uv).r;
 

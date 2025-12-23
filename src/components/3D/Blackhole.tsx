@@ -1,13 +1,6 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-import {
-  AdditiveBlending,
-  Color,
-  DoubleSide,
-  Mesh,
-  ShaderMaterial,
-  Uniform,
-} from "three";
+import { AdditiveBlending, DoubleSide } from "three";
 
 import { useFrame } from "@react-three/fiber";
 
@@ -15,47 +8,56 @@ import { useControls } from "leva";
 
 import useNoiseTexture from "../../hooks/3D/useNoiseTexture";
 
-import blackHoleDiscVertexShader from "../../shaders/blackHoleDisc/vertex.glsl";
-import blackHoleDiscFragmentShader from "../../shaders/blackHoleDisc/fragment.glsl";
+import BlackholeParticles from "./BlackholeParticles";
+
+import { type BlackHoleDiscMaterialInstance } from "../../materials/BlackHoleDiscMaterial";
 
 export default function Blackhole() {
-  const { wireframe, innerColor, outerColor } = useControls("Black Hole", {
+  const [innerColor, setInnerColor] = useState("#ff8080");
+  const [outerColor, setOuterColor] = useState("#3633ff");
+
+  const { wireframe } = useControls("Black Hole", {
     wireframe: false,
-    innerColor: "#ff8080",
-    outerColor: "#3633ff",
+    innerColor: {
+      value: innerColor,
+      onChange: setInnerColor,
+    },
+    outerColor: {
+      value: outerColor,
+      onChange: setOuterColor,
+    },
   });
 
-  const meshRef = useRef<Mesh>(null);
-  const materialRef = useRef<ShaderMaterial>(null);
+  const materialRef = useRef<BlackHoleDiscMaterialInstance>(null);
 
   const noiseTexture = useNoiseTexture();
 
   useFrame((state) => {
     if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = state.clock.getElapsedTime();
+      materialRef.current.uTime = state.clock.getElapsedTime();
     }
   });
 
   return (
-    <mesh ref={meshRef}>
-      <cylinderGeometry args={[5, 1, 0, 64, 10, true]} />
-      <shaderMaterial
-        ref={materialRef}
-        vertexShader={blackHoleDiscVertexShader}
-        fragmentShader={blackHoleDiscFragmentShader}
-        side={DoubleSide}
-        blending={AdditiveBlending}
-        depthWrite={false}
-        depthTest={false}
-        transparent={true}
-        wireframe={wireframe}
-        uniforms={{
-          uTime: new Uniform(0),
-          uNoiseTexture: new Uniform(noiseTexture),
-          uInnerColor: new Uniform(new Color(innerColor)),
-          uOuterColor: new Uniform(new Color(outerColor)),
-        }}
-      />
-    </mesh>
+    <group>
+      <mesh>
+        <cylinderGeometry args={[5, 1, 0, 64, 10, true]} />
+
+        <blackHoleDiscMaterial
+          ref={materialRef}
+          side={DoubleSide}
+          blending={AdditiveBlending}
+          depthWrite={false}
+          depthTest={false}
+          transparent={true}
+          wireframe={wireframe}
+          uNoiseTexture={noiseTexture}
+          uInnerColor={innerColor}
+          uOuterColor={outerColor}
+        />
+      </mesh>
+
+      <BlackholeParticles innerColor={innerColor} outerColor={outerColor} />
+    </group>
   );
 }

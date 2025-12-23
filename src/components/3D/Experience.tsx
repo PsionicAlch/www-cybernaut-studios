@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { StrictMode } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -9,20 +9,21 @@ import { Perf } from "r3f-perf";
 
 import Debug from "../Debug";
 import Blackhole from "./Blackhole";
+import Stars from "./Stars";
 
 export default function Experience() {
-  const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false);
 
   const { showPerf } = useControls("Experience", {
     showPerf: false,
   });
 
-  useEffect(() => setLoaded(true), []);
+  // useEffect(() => setLoaded(true), []);
 
-  if (!loaded) return null;
+  // if (!loaded) return null;
 
   return (
-    <>
+    <StrictMode>
       <Debug />
 
       <div className="fixed top-0 left-0 w-full h-full">
@@ -32,8 +33,10 @@ export default function Experience() {
           <OrbitControls />
 
           <Blackhole />
+
+          <Stars />
         </Canvas>
       </div>
-    </>
+    </StrictMode>
   );
 }
