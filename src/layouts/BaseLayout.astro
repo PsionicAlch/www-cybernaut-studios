@@ -13,6 +13,8 @@ import "../styles/global.css";
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901,1,2&display=swap" rel="stylesheet">
+
     {
       import.meta.env.PROD && (
         <script
@@ -26,7 +28,7 @@ import "../styles/global.css";
 
     <title>Cybernaut Studios</title>
   </head>
-  <body class="bg-gruvbox-bg-0 text-gruvbox-fg-0">
+  <body class="bg-theme-bg-0 text-theme-fg-0">
     <slot />
   </body>
 </html>

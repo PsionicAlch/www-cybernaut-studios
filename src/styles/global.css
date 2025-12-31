@@ -6,35 +6,40 @@
   --font-cormorant-garamond: "Cormorant Garamond", serif;
   --font-playfair-display: "Playfair Display", serif;
   --font-crimson-pro: "Crimson Pro", serif;
+  --font-satoshi: "Satoshi", sans-serif;
   --font-inter: "Inter", sans-serif;
 
   /* Dark mode gruvbox */
-  --color-gruvbox-bg-0-h: #1d2021;
-  --color-gruvbox-bg-0-s: #32302f;
-  --color-gruvbox-bg-0: #282828;
-  --color-gruvbox-bg-1: #3c3836;
-  --color-gruvbox-bg-2: #504945;
-  --color-gruvbox-bg-3: #665c54;
-  --color-gruvbox-bg-4: #7c6f64;
-  --color-gruvbox-fg-0: #fbf1c7;
-  --color-gruvbox-fg-1: #ebdbb2;
-  --color-gruvbox-fg-2: #d5c4a1;
-  --color-gruvbox-fg-3: #bdae93;
-  --color-gruvbox-fg-4: #a89984;
-  --color-gruvbox-gray-light: #a89984;
-  --color-gruvbox-gray-dark: #928374;
-  --color-gruvbox-red-light: #fb4934;
-  --color-gruvbox-red-dark: #cc241d;
-  --color-gruvbox-orange-light: #fe8019;
-  --color-gruvbox-orange-dark: #d65d0e;
-  --color-gruvbox-green-light: #b8bb26;
-  --color-gruvbox-green-dark: #98971a;
-  --color-gruvbox-yellow-light: #fabd2f;
-  --color-gruvbox-yellow-dark: #d79921;
-  --color-gruvbox-blue-light: #83a598;
-  --color-gruvbox-blue-dark: #458588;
-  --color-gruvbox-purple-light: #d3869b;
-  --color-gruvbox-purple-dark: #b16286;
-  --color-gruvbox-aqua-light: #8ec07c;
-  --color-gruvbox-aqua-dark: #689d6a;
+  --color-theme-bg-0-h: #1d2021;
+  --color-theme-bg-0-s: #32302f;
+  --color-theme-bg-0: #282828;
+  --color-theme-bg-1: #3c3836;
+  --color-theme-bg-2: #504945;
+  --color-theme-bg-3: #665c54;
+  --color-theme-bg-4: #7c6f64;
+  --color-theme-fg-0: #fbf1c7;
+  --color-theme-fg-1: #ebdbb2;
+  --color-theme-fg-2: #d5c4a1;
+  --color-theme-fg-3: #bdae93;
+  --color-theme-fg-4: #a89984;
+  --color-theme-gray-light: #a89984;
+  --color-theme-gray-dark: #928374;
+  --color-theme-red-light: #fb4934;
+  --color-theme-red-dark: #cc241d;
+  --color-theme-orange-light: #fe8019;
+  --color-theme-orange-dark: #d65d0e;
+  --color-theme-green-light: #b8bb26;
+  --color-theme-green-dark: #98971a;
+  --color-theme-yellow-light: #fabd2f;
+  --color-theme-yellow-dark: #d79921;
+  --color-theme-blue-light: #83a598;
+  --color-theme-blue-dark: #458588;
+  --color-theme-purple-light: #d3869b;
+  --color-theme-purple-dark: #b16286;
+  --color-theme-aqua-light: #8ec07c;
+  --color-theme-aqua-dark: #689d6a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-satoshi font-stretch-extra-expanded;
 }
