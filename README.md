@@ -27,3 +27,11 @@ You may but are not required to identify Indian Type Foundry Fonts in your work 
 ```
 
 we are legally allowed to use it without needing to pay them or credit them. Them being *Indian Type Foundary*. But just in case something changes we should remember to keep an eye out in the future.
+
+### Earth textures
+
+We are using textures provided by [Solar System Scope](https://www.solarsystemscope.com/textures/) under [Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/):
+
+```text
+You may use, adapt, and share these textures for any purpose, even commercially.
+```
