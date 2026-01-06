@@ -105,8 +105,8 @@ export default function HomeExperience() {
     <>
       <Debug />
 
-      <div className="fixed top-0 left-0 w-full h-full">
-        <Canvas camera={{ fov: 30, position: [0, 0, 7] }}>
+      <div className="fixed top-0 left-0 w-full h-full -z-10">
+        <Canvas camera={{ fov: 30 }}>
           {showPerf && <Perf position="top-left" />}
 
           {activeControls && <OrbitControls />}
@@ -115,7 +115,7 @@ export default function HomeExperience() {
             <ToneMapping mode={toneMapping} />
           </EffectComposer>
 
-          <group position={[1.8, -1, 2]}>
+          <group position={[1.6, -1, 0.5]}>
             {/* <Sun ref={sunRef} position={sunDirection} /> */}
 
             <Earth

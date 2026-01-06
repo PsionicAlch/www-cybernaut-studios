@@ -38,7 +38,7 @@ export default function Earth({
 
   useFrame(({ clock }) => {
     if (earthMeshRef.current) {
-      earthMeshRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+      earthMeshRef.current.rotation.y = clock.getElapsedTime() * -0.1;
     }
   });
 
@@ -58,7 +58,7 @@ export default function Earth({
         />
       </mesh>
 
-      <mesh scale={1.015}>
+      <mesh scale={1.04}>
         <sphereGeometry args={[2, 64, 64]} />
         <atmosphereMaterial
           key={AtmosphereMaterial.key}
