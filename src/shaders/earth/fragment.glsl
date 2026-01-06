@@ -15,7 +15,8 @@ void main() {
   vec3 normal = normalize(vNormal);
   vec3 color = vec3(0.0);
 
-  float sunOrientation = dot(normalize(uSunDirection), normal);
+  vec3 sunDirection = normalize(uSunDirection);
+  float sunOrientation = dot(sunDirection, normal);
   float dayMix = smoothstep(-0.25, 0.5, sunOrientation);
 
   vec3 dayColor = texture(uDayTexture, vUv).rgb;
@@ -29,8 +30,22 @@ void main() {
 
   color = mix(color, vec3(1.0), cloudsMix);
 
-  gl_FragColor = vec4(color, 1.0);
+  float fresnel = dot(viewDirection, normal) + 1.0;
+  fresnel = pow(fresnel, 2.0);
 
-  #include <tonemapping_fragment>
-  #include <colorspace_fragment>
+  float atmosphereDayMix = smoothstep(-0.5, 1.0, sunOrientation);
+  vec3 atmosphereColor = mix(uAtmosphereTwilightColor, uAtmosphereDayColor, atmosphereDayMix);
+
+  color = mix(color, atmosphereColor, fresnel * atmosphereDayMix);
+
+  vec3 reflection = reflect(-sunDirection, normal);
+  float specular = -dot(reflection, viewDirection);
+  specular = max(specular, 0.0);
+  specular = pow(specular, 32.0);
+  specular *= specularCloudColor.r;
+
+  vec3 specularColor = mix(vec3(1.0), atmosphereColor, fresnel);
+  color += specular * specularColor;
+
+  gl_FragColor = vec4(color, 1.0);
 }

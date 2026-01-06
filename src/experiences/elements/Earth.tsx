@@ -1,11 +1,12 @@
 import { useRef } from "react";
 
-import { Mesh, SRGBColorSpace, Vector3 } from "three";
+import { BackSide, Color, Mesh, Vector3 } from "three";
 
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 
-import "../../materials/EarthMaterial";
+import { EarthMaterial } from "../../materials/EarthMaterial";
+import { AtmosphereMaterial } from "../../materials/AtmosphereMaterial";
 
 interface EarthProps {
   sunDirection: Vector3;
@@ -14,7 +15,12 @@ interface EarthProps {
   atmosphereTwilightColor: string;
 }
 
-export default function Earth({ sunDirection, cloudMix, atmosphereDayColor, atmosphereTwilightColor }: EarthProps) {
+export default function Earth({
+  sunDirection,
+  cloudMix,
+  atmosphereDayColor,
+  atmosphereTwilightColor,
+}: EarthProps) {
   const earthMeshRef = useRef<Mesh>(null);
 
   const { earthDayTexture, earthNightTexture, earthSpecularCloudTexture } =
@@ -24,9 +30,7 @@ export default function Earth({ sunDirection, cloudMix, atmosphereDayColor, atmo
       earthSpecularCloudTexture:
         "/textures/earth/2k_earth_specular_cloudmap.jpg",
     });
-  earthDayTexture.colorSpace = SRGBColorSpace;
   earthDayTexture.anisotropy = 8;
-  earthNightTexture.colorSpace = SRGBColorSpace;
   earthNightTexture.anisotropy = 8;
   earthSpecularCloudTexture.anisotropy = 8;
 
@@ -37,17 +41,32 @@ export default function Earth({ sunDirection, cloudMix, atmosphereDayColor, atmo
   });
 
   return (
-    <mesh ref={earthMeshRef}>
-      <sphereGeometry args={[2, 64, 64]} />
-      <earthMaterial
-        uDayTexture={earthDayTexture}
-        uNightTexture={earthNightTexture}
-        uSpecularCloudsTexture={earthSpecularCloudTexture}
-        uSunDirection={sunDirection}
-        uCloudMix={cloudMix}
-        uAtmosphereDayColor={atmosphereDayColor}
-        uAtmosphereTwilightColor={atmosphereTwilightColor}
-      />
-    </mesh>
+    <group ref={earthMeshRef}>
+      <mesh>
+        <sphereGeometry args={[2, 64, 64]} />
+        <earthMaterial
+          key={EarthMaterial.key}
+          uDayTexture={earthDayTexture}
+          uNightTexture={earthNightTexture}
+          uSpecularCloudsTexture={earthSpecularCloudTexture}
+          uSunDirection={sunDirection}
+          uCloudMix={cloudMix}
+          uAtmosphereDayColor={new Color(atmosphereDayColor)}
+          uAtmosphereTwilightColor={new Color(atmosphereTwilightColor)}
+        />
+      </mesh>
+
+      <mesh scale={1.04}>
+        <sphereGeometry args={[2, 64, 64]} />
+        <atmosphereMaterial
+          key={AtmosphereMaterial.key}
+          side={BackSide}
+          transparent
+          uSunDirection={sunDirection}
+          uAtmosphereDayColor={new Color(atmosphereDayColor)}
+          uAtmosphereTwilightColor={new Color(atmosphereTwilightColor)}
+        />
+      </mesh>
+    </group>
   );
 }

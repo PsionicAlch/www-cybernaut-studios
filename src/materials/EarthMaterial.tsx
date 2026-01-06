@@ -26,8 +26,8 @@ export type EarthMaterialInstance = ShaderMaterial & {
   uSpecularCloudsTexture: Texture;
   uSunDirection: Vector3;
   uCloudMix: number;
-  uAtmosphereDayColor: Color,
-  uAtmosphereTwilightColor: Color,
+  uAtmosphereDayColor: Color;
+  uAtmosphereTwilightColor: Color;
 };
 
 extend({ EarthMaterial });

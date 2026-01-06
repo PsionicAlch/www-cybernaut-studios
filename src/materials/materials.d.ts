@@ -1,7 +1,5 @@
-import { BlackHoleDiscMaterial } from "./BlackHoleDiscMaterial";
-import { BlackHoleParticlesMaterial } from "./BlackHoleParticlesMaterial";
-import type { EarthMaterial } from "./EarthMaterial";
-import { StarsMaterial } from "./StarsMaterial";
+import { EarthMaterial } from "./EarthMaterial";
+import { AtmosphereMaterial } from "./AtmosphereMaterial";
 
 declare module "@react-three/fiber" {
   interface ThreeElements {
@@ -9,5 +7,10 @@ declare module "@react-three/fiber" {
       JSX.IntrinsicElements["meshStandardMaterial"]
     > &
       Partial<typeof EarthMaterial>;
+
+    atmosphereMaterial: React.PropsWithoutRef<
+      JSX.IntrinsicElements["meshStandardMaterial"]
+    > &
+      Partial<typeof AtmosphereMaterial>;
   }
 }
