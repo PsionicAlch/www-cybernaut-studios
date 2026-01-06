@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { BackSide, Color, Mesh, Vector3 } from "three";
+import { BackSide, Color, Mesh, SRGBColorSpace, Vector3 } from "three";
 
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
@@ -30,7 +30,9 @@ export default function Earth({
       earthSpecularCloudTexture:
         "/textures/earth/2k_earth_specular_cloudmap.jpg",
     });
+  earthDayTexture.colorSpace = SRGBColorSpace;
   earthDayTexture.anisotropy = 8;
+  earthNightTexture.colorSpace = SRGBColorSpace;
   earthNightTexture.anisotropy = 8;
   earthSpecularCloudTexture.anisotropy = 8;
 
@@ -56,7 +58,7 @@ export default function Earth({
         />
       </mesh>
 
-      <mesh scale={1.04}>
+      <mesh scale={1.015}>
         <sphereGeometry args={[2, 64, 64]} />
         <atmosphereMaterial
           key={AtmosphereMaterial.key}

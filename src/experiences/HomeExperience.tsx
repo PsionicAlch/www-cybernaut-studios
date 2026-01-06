@@ -1,9 +1,17 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
-import { Spherical, Vector3 } from "three";
+import { Mesh, Spherical, Vector3 } from "three";
+
+import { ToneMappingMode } from "postprocessing";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import {
+  Bloom,
+  EffectComposer,
+  GodRays,
+  ToneMapping,
+} from "@react-three/postprocessing";
 
 import { folder, useControls } from "leva";
 
@@ -18,7 +26,7 @@ export default function HomeExperience() {
   const {
     showPerf,
     activeControls,
-    showSun,
+    toneMapping,
     sunRadius,
     sunPhi,
     sunTheta,
@@ -31,14 +39,27 @@ export default function HomeExperience() {
       label: "Show Performance Metrics",
     },
     activeControls: {
-      value: true,
+      value: false,
       label: "Turn On Orbit Controls",
     },
-    "Sun Controls": folder({
-      showSun: {
-        value: true,
-        label: "Show Debug Sun",
+    Postprocessing: folder({
+      toneMapping: {
+        options: {
+          Linear: ToneMappingMode.LINEAR,
+          Reinhard: ToneMappingMode.REINHARD,
+          Reinhard_2: ToneMappingMode.REINHARD2,
+          Reinhard_2_Adaptive: ToneMappingMode.REINHARD2_ADAPTIVE,
+          Uncharted_2: ToneMappingMode.UNCHARTED2,
+          Optimized_Cineon: ToneMappingMode.OPTIMIZED_CINEON,
+          Cineon: ToneMappingMode.CINEON,
+          ACES_Filmic: ToneMappingMode.ACES_FILMIC,
+          AGX: ToneMappingMode.AGX,
+          Neutral: ToneMappingMode.NEUTRAL,
+        },
+        value: ToneMappingMode.ACES_FILMIC,
       },
+    }),
+    "Sun Controls": folder({
       sunRadius: {
         value: 1,
         label: "Radius",
@@ -48,7 +69,7 @@ export default function HomeExperience() {
         label: "Phi",
       },
       sunTheta: {
-        value: 0.5,
+        value: -2.4,
         label: "Theta",
       },
     }),
@@ -70,6 +91,8 @@ export default function HomeExperience() {
     }),
   });
 
+  const sunRef = useRef<Mesh>(null!);
+
   const sunDirection = useMemo(() => {
     const sunSpherical = new Spherical(sunRadius, sunPhi, sunTheta);
     const sunDirection = new Vector3();
@@ -83,18 +106,25 @@ export default function HomeExperience() {
       <Debug />
 
       <div className="fixed top-0 left-0 w-full h-full">
-        <Canvas camera={{ position: [0, 0, 7] }}>
+        <Canvas camera={{ fov: 30, position: [0, 0, 7] }}>
           {showPerf && <Perf position="top-left" />}
 
           {activeControls && <OrbitControls />}
 
-          <Earth
-            sunDirection={sunDirection}
-            cloudMix={cloudMix}
-            atmosphereDayColor={atmosphereDayColor}
-            atmosphereTwilightColor={atmosphereTwilightColor}
-          />
-          {showSun && <Sun position={sunDirection} />}
+          <EffectComposer>
+            <ToneMapping mode={toneMapping} />
+          </EffectComposer>
+
+          <group position={[1.8, -1, 2]}>
+            {/* <Sun ref={sunRef} position={sunDirection} /> */}
+
+            <Earth
+              sunDirection={sunDirection}
+              cloudMix={cloudMix}
+              atmosphereDayColor={atmosphereDayColor}
+              atmosphereTwilightColor={atmosphereTwilightColor}
+            />
+          </group>
         </Canvas>
       </div>
     </>
