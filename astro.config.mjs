@@ -11,6 +11,10 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   output: 'static',
   site: "https://cybernaut.studio",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  },
   vite: {
     plugins: [tailwindcss(), glsl()],
   },
