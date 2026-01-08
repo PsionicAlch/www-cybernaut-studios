@@ -1,45 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --font-cormorant-garamond: "Cormorant Garamond", serif;
-  --font-playfair-display: "Playfair Display", serif;
-  --font-crimson-pro: "Crimson Pro", serif;
-  --font-satoshi: "Satoshi", sans-serif;
+  --font-cinzel: "Cinzel", serif;
   --font-inter: "Inter", sans-serif;
 
-  /* Dark mode gruvbox */
-  --color-theme-bg-0-h: #1d2021;
-  --color-theme-bg-0-s: #32302f;
-  --color-theme-bg-0: #282828;
-  --color-theme-bg-1: #3c3836;
-  --color-theme-bg-2: #504945;
-  --color-theme-bg-3: #665c54;
-  --color-theme-bg-4: #7c6f64;
-  --color-theme-fg-0: #fbf1c7;
-  --color-theme-fg-1: #ebdbb2;
-  --color-theme-fg-2: #d5c4a1;
-  --color-theme-fg-3: #bdae93;
-  --color-theme-fg-4: #a89984;
-  --color-theme-gray-light: #a89984;
-  --color-theme-gray-dark: #928374;
-  --color-theme-red-light: #fb4934;
-  --color-theme-red-dark: #cc241d;
-  --color-theme-orange-light: #fe8019;
-  --color-theme-orange-dark: #d65d0e;
-  --color-theme-green-light: #b8bb26;
-  --color-theme-green-dark: #98971a;
-  --color-theme-yellow-light: #fabd2f;
-  --color-theme-yellow-dark: #d79921;
-  --color-theme-blue-light: #83a598;
-  --color-theme-blue-dark: #458588;
-  --color-theme-purple-light: #d3869b;
-  --color-theme-purple-dark: #b16286;
-  --color-theme-aqua-light: #8ec07c;
-  --color-theme-aqua-dark: #689d6a;
+  /* --color-theme-background: #050510; */
+  --color-theme-background: #0B0C10;
+  --color-theme-primary-accent: #F4E4BC;
+  /* --color-theme-primary-accent: #B76E79; */
+  --color-theme-secondary-accent: #A2D2FF;
+  --color-theme-text: #EAEAEA;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-satoshi font-stretch-extra-expanded;
+  @apply font-cinzel font-stretch-extra-expanded text-theme-primary-accent;
+}
+
+p {
+  @apply font-inter text-theme-text;
 }
