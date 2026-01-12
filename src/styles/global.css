@@ -1,23 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --font-cinzel: "Cinzel", serif;
+  --font-ubuntu-mono: "Ubuntu Mono", serif;
   --font-inter: "Inter", sans-serif;
-
-  /* --color-theme-background: #050510; */
-  --color-theme-background: #0B0C10;
-  --color-theme-primary-accent: #F4E4BC;
-  /* --color-theme-primary-accent: #B76E79; */
-  --color-theme-secondary-accent: #A2D2FF;
-  --color-theme-text: #EAEAEA;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-cinzel font-stretch-extra-expanded text-theme-primary-accent;
+  @apply font-ubuntu-mono font-stretch-extra-expanded;
 }
 
 p {
-  @apply font-inter text-theme-text;
+  @apply font-inter;
 }

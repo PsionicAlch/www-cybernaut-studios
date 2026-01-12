@@ -5,8 +5,8 @@ import { BackSide, Color, Mesh, SRGBColorSpace, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 
-import { EarthMaterial } from "../../materials/EarthMaterial";
-import { AtmosphereMaterial } from "../../materials/AtmosphereMaterial";
+import { EarthMaterial } from "../materials/EarthMaterial";
+import { AtmosphereMaterial } from "../materials/AtmosphereMaterial";
 
 interface EarthProps {
   sunDirection: Vector3;
