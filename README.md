@@ -1,37 +1,75 @@
-# Cybernaut Studios Website Source Code
+# React + TypeScript + Vite
 
-## Odities:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Experiences & Elements vs Components
+Currently, two official plugins are available:
 
-I chose to place ThreeJS related components and experiences in the `./src/experiences` and `./src/experiences/elements` folders instead of the `./src/components` folder because all ThreeJS related components are reliant on the `<Canvas>` element. As such it felt necessary to keep ThreeJS components separate and directly next to the experiences which will use them.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Legalities to look out for:
+## React Compiler
 
-### Use of Satoshi font
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-We are currently using the [Satoshi font](https://www.fontshare.com/fonts/satoshi). According to the [Grant of License](https://www.fontshare.com/fonts/satoshi#grant-of-license):
+Note: This will impact Vite dev & build performances.
 
-```text
-You are hereby granted a non-exclusive, non-assignable, non-transferrable, terminable license to access, download and use the Font Software for your personal or commercial use for an unlimited period of time for free of charge.
+## Expanding the ESLint configuration
 
-You may use the font Software in any media (including Print, Web, Mobile, Digital, Apps, ePub, Broadcasting and OEM) at any scale, at any location worldwide.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-You may use the Font Software to create logos and other graphic elements, images on any surface, vector files or other scalable drawings and static images.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-You may use the Font Software on any number of devices (computer, tablet, phone). The number of output devices (Printers) is not restricted.
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-You may make only such reasonable number of back-up copies suitable to your permitted use.
-
-You may but are not required to identify Indian Type Foundry Fonts in your work credits.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-we are legally allowed to use it without needing to pay them or credit them. Them being *Indian Type Foundary*. But just in case something changes we should remember to keep an eye out in the future.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### Earth textures
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-We are using textures provided by [Solar System Scope](https://www.solarsystemscope.com/textures/) under [Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/):
-
-```text
-You may use, adapt, and share these textures for any purpose, even commercially.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
