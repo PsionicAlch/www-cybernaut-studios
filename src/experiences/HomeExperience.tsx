@@ -1,132 +1,49 @@
-import { useMemo, useRef } from "react";
-
-import { Mesh, Spherical, Vector3 } from "three";
-
-import { ToneMappingMode } from "postprocessing";
-
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import {
-  Bloom,
-  EffectComposer,
-  GodRays,
-  ToneMapping,
-} from "@react-three/postprocessing";
-
-import { folder, useControls } from "leva";
-
-import { Perf } from "r3f-perf";
-
 import Debug from "../components/Debug";
 
-import Earth from "./elements/Earth";
-import Sun from "./elements/Sun";
-
 export default function HomeExperience() {
-  const {
-    showPerf,
-    activeControls,
-    toneMapping,
-    sunRadius,
-    sunPhi,
-    sunTheta,
-    cloudMix,
-    atmosphereDayColor,
-    atmosphereTwilightColor,
-  } = useControls({
-    showPerf: {
-      value: false,
-      label: "Show Performance Metrics",
-    },
-    activeControls: {
-      value: false,
-      label: "Turn On Orbit Controls",
-    },
-    Postprocessing: folder({
-      toneMapping: {
-        options: {
-          Linear: ToneMappingMode.LINEAR,
-          Reinhard: ToneMappingMode.REINHARD,
-          Reinhard_2: ToneMappingMode.REINHARD2,
-          Reinhard_2_Adaptive: ToneMappingMode.REINHARD2_ADAPTIVE,
-          Uncharted_2: ToneMappingMode.UNCHARTED2,
-          Optimized_Cineon: ToneMappingMode.OPTIMIZED_CINEON,
-          Cineon: ToneMappingMode.CINEON,
-          ACES_Filmic: ToneMappingMode.ACES_FILMIC,
-          AGX: ToneMappingMode.AGX,
-          Neutral: ToneMappingMode.NEUTRAL,
-        },
-        value: ToneMappingMode.ACES_FILMIC,
-      },
-    }),
-    "Sun Controls": folder({
-      sunRadius: {
-        value: 1,
-        label: "Radius",
-      },
-      sunPhi: {
-        value: Math.PI * 0.5,
-        label: "Phi",
-      },
-      sunTheta: {
-        value: -2.4,
-        label: "Theta",
-      },
-    }),
-    "Earth Controls": folder({
-      cloudMix: {
-        value: 0.5,
-        min: 0.0,
-        max: 1.0,
-        label: "Cloud Mix",
-      },
-      atmosphereDayColor: {
-        value: "#00aaff",
-        label: "Atmosphere Day Color",
-      },
-      atmosphereTwilightColor: {
-        value: "#ff6600",
-        label: "Atmosphere Twilight Color",
-      },
-    }),
-  });
-
-  const sunRef = useRef<Mesh>(null!);
-
-  const sunDirection = useMemo(() => {
-    const sunSpherical = new Spherical(sunRadius, sunPhi, sunTheta);
-    const sunDirection = new Vector3();
-    sunDirection.setFromSpherical(sunSpherical);
-
-    return sunDirection;
-  }, [sunRadius, sunPhi, sunTheta]);
+  // const {} = useControls({});
 
   return (
     <>
       <Debug />
 
-      <div className="fixed top-0 left-0 w-full h-full -z-10">
-        <Canvas camera={{ fov: 30 }}>
-          {showPerf && <Perf position="top-left" />}
+      <main className="w-dvw h-dvh overflow-hidden bg-white font-black p-10">
+        <div className="relative w-full h-full border border-black">
+          <div className="p-1 bg-white absolute -top-4 -left-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </div>
 
-          {activeControls && <OrbitControls />}
-
-          <EffectComposer>
-            <ToneMapping mode={toneMapping} />
-          </EffectComposer>
-
-          <group position={[1.6, -1, 0.5]}>
-            {/* <Sun ref={sunRef} position={sunDirection} /> */}
-
-            <Earth
-              sunDirection={sunDirection}
-              cloudMix={cloudMix}
-              atmosphereDayColor={atmosphereDayColor}
-              atmosphereTwilightColor={atmosphereTwilightColor}
-            />
-          </group>
-        </Canvas>
-      </div>
+          <div className="p-1 bg-white absolute -bottom-4 -right-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </div>
+        </div>
+      </main>
     </>
   );
 }
