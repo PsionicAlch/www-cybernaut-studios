@@ -9,16 +9,16 @@ function App() {
 
   return (
     <>
-      <div className="absolute w-dvw h-dvh top-0 left-0">
+      <div className="absolute w-dvw h-dvh top-0 left-0 pointer-events-auto">
         <Canvas>
           <Environment preset="studio" />
-          <ContactShadows position={[0, -2, 0]} />
+          <ContactShadows position={[0, -2, 0]} blur={0.7} width={5} height={5} far={10} />
 
           <HomeExperience />
         </Canvas>
       </div>
 
-      <div className="relative w-full h-full border border-black">
+      <div className="relative w-full h-full border border-black pointer-events-none">
         <div className="p-1 bg-white absolute -top-4 -left-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,18 +54,18 @@ function App() {
         </div>
 
         <nav className="w-full flex flex-row justify-between items-center absolute -top-6 left-0 px-5 py-2">
-          <h1 className="bg-white px-2 font-normal text-xl hover:underline">
-            <a href="/">Cybernaut Studio</a>
+          <h1 className="bg-white px-2 font-normal text-xl">
+            <a href="/" className="hover:underline pointer-events-auto">Cybernaut Studio</a>
           </h1>
 
           <ul className="flex flex-row gap-6 font-normal">
             <li className="bg-white px-2">
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline pointer-events-auto">
                 About
               </a>
             </li>
             <li className="bg-white px-2">
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline pointer-events-auto">
                 Contact
               </a>
             </li>
@@ -76,15 +76,15 @@ function App() {
           <HomePage />
         </div>
 
-        <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5 right-0 px-5 py-2">
+        <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5 right-0 px-5 py-2 pointer-events-auto">
           <ul className="flex flex-row gap-6 font-normal">
             <li className="bg-white px-2">
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline pointer-events-auto">
                 Privacy
               </a>
             </li>
             <li className="bg-white px-2">
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:underline pointer-events-auto">
                 Legal
               </a>
             </li>
