@@ -41,7 +41,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
         </svg>
       </div>
 
-      <nav className="w-full flex flex-row justify-between items-center absolute -top-6 left-0 px-5 py-2">
+      <nav className="w-full flex flex-row justify-between items-center absolute -top-5.5 left-0 px-5 py-2">
         <h1 className="bg-white px-2 font-normal text-xl">
           <a href="/" className="hover:underline">
             Cybernaut Studio
@@ -66,7 +66,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
         {children}
       </div>
 
-      <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5 right-0 px-5 py-2">
+      <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5.5 right-0 px-5 py-2">
         <ul className="flex flex-row gap-6 font-normal">
           <li className="bg-white px-2">
             <a href="#" className="hover:underline">

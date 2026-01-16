@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.cursor {
+  @apply pointer-events-none absolute;
+}
