@@ -8,11 +8,11 @@ import DefaultLayout from "./layouts/Default";
 function App() {
   return (
     <DefaultLayout>
-      <div className="max-w-[45%] w-full h-full">
+      <div className="w-full h-full">
         <HomePage />
       </div>
 
-      <div className="relative w-full h-full">
+      <div className="w-full h-full">
         <Canvas camera={{ fov: 35 }}>
           <Environment preset="studio" />
           <ContactShadows position={[0, -1.3, 0]} />
