@@ -38,11 +38,11 @@ export default function HomeSection8({ onPrevious }: HomeSectionProps) {
         <textarea name="details" id="details"></textarea>
 
         <div className="flex gap-2">
-          <button onClick={handlePrevious}>
+          <button onClick={handlePrevious} className="hover:cursor-pointer">
             <TypedText text="[ Previous ]" />
           </button>
 
-          <button type="submit">
+          <button type="submit" className="hover:cursor-pointer">
             <TypedText text="[ Submit ]" />
           </button>
         </div>

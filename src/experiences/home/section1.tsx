@@ -3,10 +3,9 @@ import { useEffect, useRef } from "react";
 import { Group, Vector3, type Object3DEventMap } from "three";
 
 import { useFrame, useThree } from "@react-three/fiber";
+import ScifiHelmetModel from "../models/ScifiHelmet";
 
-import ScifiHelmetModel from "./models/ScifiHelmet";
-
-export default function HomeExperience() {
+export default function HomeExperienceSection1() {
   const helmetRef = useRef<Group<Object3DEventMap>>(null);
   const mouseNDC = useRef({ x: 0, y: 0 });
 
@@ -18,7 +17,7 @@ export default function HomeExperience() {
 
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      
+
       mouseNDC.current.x = x * 2 - 1;
       mouseNDC.current.y = -(y * 2 - 1);
     };

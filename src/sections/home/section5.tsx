@@ -18,7 +18,7 @@ export default function HomeSection5({ onPrevious, onNext }: HomeSectionProps) {
   return (
     <div ref={containerRef}>
       <h1 className="text-6xl mb-7">
-        <TypedText text="See It in Real Life" />
+        <TypedText text="See it in Real Life" />
       </h1>
 
       <p className="mb-6">
@@ -26,11 +26,11 @@ export default function HomeSection5({ onPrevious, onNext }: HomeSectionProps) {
       </p>
 
       <div className="flex gap-2">
-        <button onClick={handlePrevious}>
+        <button onClick={handlePrevious} className="hover:cursor-pointer">
           <TypedText text="[ Previous ]" />
         </button>
 
-        <button onClick={handleNext}>
+        <button onClick={handleNext} className="hover:cursor-pointer">
           <TypedText text="[ Next ]" />
         </button>
       </div>

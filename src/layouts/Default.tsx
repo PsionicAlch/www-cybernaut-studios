@@ -50,12 +50,12 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
 
         <ul className="flex flex-row gap-6 font-normal">
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline hover:cursor-not-allowed">
               About
             </a>
           </li>
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline hover:cursor-not-allowed">
               Contact
             </a>
           </li>
@@ -69,12 +69,12 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
       <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5.5 right-0 px-5 py-2">
         <ul className="flex flex-row gap-6 font-normal">
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline hover:cursor-not-allowed">
               Privacy
             </a>
           </li>
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline hover:cursor-not-allowed">
               Legal
             </a>
           </li>

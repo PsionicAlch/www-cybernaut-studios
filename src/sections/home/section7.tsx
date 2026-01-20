@@ -26,11 +26,11 @@ export default function HomeSection7({ onPrevious, onNext }: HomeSectionProps) {
       </p>
 
       <div className="flex gap-2">
-        <button onClick={handlePrevious}>
+        <button onClick={handlePrevious} className="hover:cursor-pointer">
           <TypedText text="[ Previous ]" />
         </button>
 
-        <button onClick={handleNext}>
+        <button onClick={handleNext} className="hover:cursor-pointer">
           <TypedText text="[ Next ]" />
         </button>
       </div>
