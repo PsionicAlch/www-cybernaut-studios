@@ -9,7 +9,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import TypedText from "../components/TypedText";
-// import Cursor from "../components/Cursor";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,17 +16,8 @@ export default function HomePage() {
   useGSAP(
     () => {
       const chars = gsap.utils.toArray(".char");
-      // const cursor = document.querySelector(".cursor") as HTMLElement;
 
       gsap.set(chars, { opacity: 0 });
-
-      // gsap.to(cursor, {
-      //   opacity: 0,
-      //   duration: 0.5,
-      //   repeat: -1,
-      //   yoyo: true,
-      //   ease: "none",
-      // });
 
       const tl = gsap.timeline();
 
@@ -36,11 +26,6 @@ export default function HomePage() {
         duration: 0.02,
         stagger: {
           each: 0.05,
-          // onStart() {
-          //   if (cursor) {
-          //     cursor.style.transform = `translate(${this.targets()[0].offsetLeft}px, ${this.targets()[0].offsetTop}px)`;
-          //   }
-          // }
         },
         ease: "none",
       });
@@ -52,7 +37,6 @@ export default function HomePage() {
     <div ref={containerRef}>
       <h1 className="text-6xl mb-7">
         <TypedText text="Beyond Flat Imagery" />
-        {/* <Cursor /> */}
       </h1>
 
       <p className="mb-6">
