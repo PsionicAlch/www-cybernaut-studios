@@ -25,7 +25,7 @@ import HomeExperienceSection7 from "../experiences/home/section7";
 import HomeExperienceSection8 from "../experiences/home/section8";
 
 export default function HomePage() {
-  const {hash, setHash} = useRouter();
+  const { hash, setHash } = useRouter();
   const sections = useMemo<Record<string, [JSX.Element, JSX.Element]>>(
     () => ({
       "": [
