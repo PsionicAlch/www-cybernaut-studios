@@ -1,0 +1,9 @@
+// TODO: Make this look good!
+
+export default function About() {
+  return (
+    <div className="w-full h-full flex flex-col justify-center">
+      <h1>About Page</h1>
+    </div>
+  )
+}

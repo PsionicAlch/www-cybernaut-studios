@@ -1,8 +1,9 @@
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useMemo, type JSX } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 
+import { useRouter } from "../router/RouterContext";
 import Loader from "../experiences/components/Loader";
 import HomeSection0 from "../sections/home/section0";
 import HomeSection1 from "../sections/home/section1";
@@ -12,6 +13,7 @@ import HomeSection4 from "../sections/home/section4";
 import HomeSection5 from "../sections/home/section5";
 import HomeSection6 from "../sections/home/section6";
 import HomeSection7 from "../sections/home/section7";
+import HomeSection8 from "../sections/home/section8";
 import HomeExperienceSection0 from "../experiences/home/section0";
 import HomeExperienceSection1 from "../experiences/home/section1";
 import HomeExperienceSection2 from "../experiences/home/section2";
@@ -21,77 +23,83 @@ import HomeExperienceSection5 from "../experiences/home/section5";
 import HomeExperienceSection6 from "../experiences/home/section6";
 import HomeExperienceSection7 from "../experiences/home/section7";
 import HomeExperienceSection8 from "../experiences/home/section8";
-import HomeSection8 from "../sections/home/section8";
 
 export default function HomePage() {
-  const [section, setSection] = useState(0);
-  const sections = useMemo(
-    () => [
-      [
-        <HomeSection0 onNext={() => setSection(1)} />,
+  const {hash, setHash} = useRouter();
+  const sections = useMemo<Record<string, [JSX.Element, JSX.Element]>>(
+    () => ({
+      "": [
+        <HomeSection0 onNext={() => setHash("section2")} />,
         <HomeExperienceSection0 />,
       ],
-      [
+      "section1": [
         <HomeSection1
-          onPrevious={() => setSection(0)}
-          onNext={() => setSection(2)}
+          onPrevious={() => setHash("")}
+          onNext={() => setHash("section2")}
         />,
         <HomeExperienceSection1 />,
       ],
-      [
+      "section2": [
         <HomeSection2
-          onPrevious={() => setSection(1)}
-          onNext={() => setSection(3)}
+          onPrevious={() => setHash("section1")}
+          onNext={() => setHash("section3")}
         />,
         <HomeExperienceSection2 />,
       ],
-      [
+      "section3": [
         <HomeSection3
-          onPrevious={() => setSection(2)}
-          onNext={() => setSection(4)}
+          onPrevious={() => setHash("section2")}
+          onNext={() => setHash("section4")}
         />,
         <HomeExperienceSection3 />,
       ],
-      [
+      "section4": [
         <HomeSection4
-          onPrevious={() => setSection(3)}
-          onNext={() => setSection(5)}
+          onPrevious={() => setHash("section3")}
+          onNext={() => setHash("section5")}
         />,
         <HomeExperienceSection4 />,
       ],
-      [
+      "section5": [
         <HomeSection5
-          onPrevious={() => setSection(4)}
-          onNext={() => setSection(6)}
+          onPrevious={() => setHash("section4")}
+          onNext={() => setHash("section6")}
         />,
         <HomeExperienceSection5 />,
       ],
-      [
+      "section6": [
         <HomeSection6
-          onPrevious={() => setSection(5)}
-          onNext={() => setSection(7)}
+          onPrevious={() => setHash("section5")}
+          onNext={() => setHash("section7")}
         />,
         <HomeExperienceSection6 />,
       ],
-      [
+      "section7": [
         <HomeSection7
-          onPrevious={() => setSection(6)}
-          onNext={() => setSection(8)}
+          onPrevious={() => setHash("section6")}
+          onNext={() => setHash("section8")}
         />,
         <HomeExperienceSection7 />,
       ],
-      [
-        <HomeSection8 onPrevious={() => setSection(7)} />,
+      "contact": [
+        <HomeSection8 onPrevious={() => setHash("section7")} />,
         <HomeExperienceSection8 />,
       ],
-    ],
-    []
+    }),
+    [setHash]
   );
+  const section = useMemo(() => {
+    if (sections[hash]) {
+      return sections[hash];
+    } else {
+      return sections[""];
+    }
+  }, [sections, hash]);
 
   return (
     <>
       <div className="w-full h-full flex flex-col justify-center">
-        {sections[section][0]}
+        {section[0]}
       </div>
 
       <div className="w-full h-full">
@@ -99,7 +107,7 @@ export default function HomePage() {
           <Environment preset="studio" />
           <ContactShadows position={[0, -1.3, 0]} />
 
-          <Suspense fallback={<Loader />}>{sections[section][1]}</Suspense>
+          <Suspense fallback={<Loader />}>{section[1]}</Suspense>
         </Canvas>
       </div>
     </>

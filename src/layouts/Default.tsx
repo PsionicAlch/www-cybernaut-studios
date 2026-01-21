@@ -1,5 +1,7 @@
+import { Link } from "../router/Link";
+
 interface DefaultLayoutProps {
-  children?: React.ReactElement | React.ReactElement[];
+  children?: React.ReactNode | React.ReactNode[];
 }
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
@@ -43,21 +45,22 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
 
       <nav className="w-full flex flex-row justify-between items-center absolute -top-5.5 left-0 px-5 py-2">
         <h1 className="bg-white px-2 font-normal text-xl">
-          <a href="/" className="hover:underline">
+          <Link to="/" className="hover:underline">
             Cybernaut Studio
-          </a>
+          </Link>
         </h1>
 
         <ul className="flex flex-row gap-6 font-normal">
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline hover:cursor-not-allowed">
+            <Link to="/about" className="hover:underline">
               About
-            </a>
+            </Link>
           </li>
+
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline hover:cursor-not-allowed">
+            <Link to="/#contact" className="hover:underline">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -69,14 +72,9 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
       <footer className="w-full flex flex-row justify-between items-center absolute -bottom-5.5 right-0 px-5 py-2">
         <ul className="flex flex-row gap-6 font-normal">
           <li className="bg-white px-2">
-            <a href="#" className="hover:underline hover:cursor-not-allowed">
+            <Link to="/privacy" className="hover:underline">
               Privacy
-            </a>
-          </li>
-          <li className="bg-white px-2">
-            <a href="#" className="hover:underline hover:cursor-not-allowed">
-              Legal
-            </a>
+            </Link>
           </li>
         </ul>
 
