@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 
 import { useRouter } from "../router/RouterContext";
+import Head from "../components/Head";
 import Loader from "../experiences/components/Loader";
 import HomeSection0 from "../sections/home/section0";
 import HomeSection1 from "../sections/home/section1";
@@ -23,6 +24,7 @@ import HomeExperienceSection5 from "../experiences/home/section5";
 import HomeExperienceSection6 from "../experiences/home/section6";
 import HomeExperienceSection7 from "../experiences/home/section7";
 import HomeExperienceSection8 from "../experiences/home/section8";
+import Title from "../components/Title";
 
 export default function HomePage() {
   const { hash, setHash } = useRouter();
@@ -98,6 +100,10 @@ export default function HomePage() {
 
   return (
     <>
+      <Head>
+        <Title>Home Page!</Title>
+      </Head>
+
       <div className="w-full h-full flex flex-col justify-center">
         {section[0]}
       </div>

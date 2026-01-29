@@ -12,6 +12,8 @@ import AboutSection4 from "../sections/about/section4";
 import AboutSection5 from "../sections/about/section5";
 import AboutExperienceSection from "../experiences/about/section";
 import Loader from "../experiences/components/Loader";
+import Head from "../components/Head";
+import Title from "../components/Title";
 
 export default function About() {
   const { hash, setHash } = useRouter();
@@ -56,6 +58,10 @@ export default function About() {
 
   return (
     <>
+      <Head>
+        <Title>About Page!</Title>
+      </Head>
+      
       <div className="w-full h-full flex flex-col justify-center">
         {section}
       </div>
