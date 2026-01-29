@@ -59,7 +59,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <Title>About Page!</Title>
+        <Title>About Us | Cybernaut Studio</Title>
       </Head>
       
       <div className="w-full h-full flex flex-col justify-center">

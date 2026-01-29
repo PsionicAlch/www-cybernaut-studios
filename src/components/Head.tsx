@@ -1,6 +1,8 @@
 import {
   Children,
   isValidElement,
+  useCallback,
+  useEffect,
   useLayoutEffect,
   useMemo,
   type ComponentType,
@@ -48,8 +50,7 @@ type HeadProps = {
 
 export default function Head({ children }: HeadProps) {
   const managed = useMemo(() => getManagedTags(children), [children]);
-
-  useLayoutEffect(() => {
+  const removeTags = useCallback(() => {
     managed.forEach((tag) => {
       if (tag.type === "title") {
         document.title = "";
@@ -64,6 +65,12 @@ export default function Head({ children }: HeadProps) {
       }
     });
   }, [managed]);
-  
+
+  useLayoutEffect(removeTags, [removeTags]);
+
+  useEffect(() => {
+    return removeTags;
+  }, [removeTags]);
+
   return <>{children}</>;
 }
