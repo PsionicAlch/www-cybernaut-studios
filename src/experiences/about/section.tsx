@@ -4,8 +4,11 @@ import { Group, Vector3, type Object3DEventMap } from "three";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import ScifiHelmetModel from "../models/ScifiHelmet";
+import useSceneReady from "../hooks/useSceneReady";
 
 export default function AboutExperienceSection() {
+  useSceneReady();
+
   const helmetRef = useRef<Group<Object3DEventMap>>(null);
   const mouseNDC = useRef({ x: 0, y: 0 }); // TODO: Start this where mouse already is, or figure out lerp.
 
@@ -35,8 +38,8 @@ export default function AboutExperienceSection() {
       new Vector3(
         mouseNDC.current.x * multiplier,
         mouseNDC.current.y * multiplier,
-        camera.position.z
-      )
+        camera.position.z,
+      ),
     );
   });
 

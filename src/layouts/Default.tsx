@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "../router/Link";
 import { useTransition } from "../transition/TransitionContext";
 
@@ -6,8 +7,20 @@ type DefaultLayoutProps = {
 };
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
-  const { phase } = useTransition();
-  console.log("Transition phase:", phase);
+  const { phase, finishExit, finishEnter } = useTransition();
+  console.log(phase);
+  
+  useEffect(() => {
+    if (phase === "exiting") {
+      // TODO: play exit animation.
+      finishExit();
+    }
+
+    if (phase === "entering") {
+      // TODO: play enter animation.
+      finishEnter();
+    }
+  }, [phase, finishExit, finishEnter]);
 
   const year = new Date().getFullYear();
 

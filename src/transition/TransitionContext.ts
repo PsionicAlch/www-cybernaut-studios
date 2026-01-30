@@ -4,8 +4,13 @@ export type TransitionPhase = "idle" | "exiting" | "loading" | "entering";
 
 export type TransitionContextValue = {
   phase: TransitionPhase;
+
   startExit: (onComplete: () => void) => void;
+  finishExit: () => void;
+
   startEnter: () => void;
+  finishEnter: () => void;
+
   setLoading: (loading: boolean) => void;
 };
 

@@ -4,8 +4,11 @@ import { Group, Vector3, type Object3DEventMap } from "three";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import ScifiHelmetModel from "../models/ScifiHelmet";
+import useSceneReady from "../hooks/useSceneReady";
 
 export default function HomeExperienceSection7() {
+  useSceneReady();
+  
   const helmetRef = useRef<Group<Object3DEventMap>>(null);
   const mouseNDC = useRef({ x: 0, y: 0 });
 

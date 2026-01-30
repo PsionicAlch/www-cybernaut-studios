@@ -7,7 +7,7 @@ type TransitionProviderProps = {
 };
 
 export function TransitionProvider({ children }: TransitionProviderProps) {
-  const [phase, setPhase] = useState<TransitionPhase>("idle");
+  const [phase, setPhase] = useState<TransitionPhase>("loading");
 
   const exitCallback = useRef<(() => void) | null>(null);
 
@@ -21,24 +21,50 @@ export function TransitionProvider({ children }: TransitionProviderProps) {
     [phase],
   );
 
-  const startEnter = () => {
-    setPhase("entering");
-  };
+  const finishExit = useCallback(() => {
+    if (phase !== "exiting") return;
+
+    exitCallback.current?.();
+    exitCallback.current = null;
+
+    setPhase("loading");
+  }, [phase]);
+
+  const startEnter = useCallback(() => {
+    if (phase === "loading") {
+      setPhase("entering");
+    }
+  }, [phase]);
+
+  const finishEnter = useCallback(() => {
+    if (phase === "entering") {
+      setPhase("idle");
+    }
+  }, [phase]);
 
   const setLoading = useCallback(
     (loading: boolean) => {
+      if (loading && phase !== "loading") {
+        setPhase("loading");
+      }
+
       if (!loading && phase === "loading") {
         setPhase("entering");
-      } else if (loading) {
-        setPhase("loading");
       }
     },
     [phase],
   );
 
   const value = useMemo(
-    () => ({ phase, startExit, startEnter, setLoading }),
-    [phase, setLoading, startExit],
+    () => ({
+      phase,
+      startExit,
+      finishExit,
+      startEnter,
+      finishEnter,
+      setLoading,
+    }),
+    [finishEnter, finishExit, phase, setLoading, startEnter, startExit],
   );
 
   return (
