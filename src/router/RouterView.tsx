@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useRouter } from "./RouterContext";
 import type { RouteConfig } from "./types";
 
-interface RouterViewProps {
+type RouterViewProps = {
   routes: RouteConfig[];
   notFound: React.ComponentType;
 };

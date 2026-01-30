@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
-function App() {
+export default function App() {
   return (
     <RouterProvider>
       <DefaultLayout>
@@ -22,5 +22,3 @@ function App() {
     </RouterProvider>
   );
 }
-
-export default App;

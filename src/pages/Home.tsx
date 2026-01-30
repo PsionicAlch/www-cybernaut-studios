@@ -5,6 +5,8 @@ import { Environment, ContactShadows } from "@react-three/drei";
 
 import { useRouter } from "../router/RouterContext";
 import Head from "../components/Head";
+import Title from "../components/Title";
+import Meta from "../components/Meta";
 import Loader from "../experiences/components/Loader";
 import HomeSection0 from "../sections/home/section0";
 import HomeSection1 from "../sections/home/section1";
@@ -24,8 +26,6 @@ import HomeExperienceSection5 from "../experiences/home/section5";
 import HomeExperienceSection6 from "../experiences/home/section6";
 import HomeExperienceSection7 from "../experiences/home/section7";
 import HomeExperienceSection8 from "../experiences/home/section8";
-import Title from "../components/Title";
-import Meta from "../components/Meta";
 
 export default function HomePage() {
   const { hash, setHash } = useRouter();

@@ -1,8 +1,8 @@
 import { Link } from "../router/Link";
 
-interface DefaultLayoutProps {
-  children?: React.ReactNode | React.ReactNode[];
-}
+type DefaultLayoutProps = {
+  children?: React.ReactNode;
+};
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
   const year = new Date().getFullYear();

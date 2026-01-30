@@ -1,8 +1,8 @@
-import React from "react";
+import type { ComponentType } from "react";
 
 export type RouteConfig = {
   path: string;
-  component: React.ComponentType;
+  component: ComponentType;
 };
 
 export type RouterState = {
