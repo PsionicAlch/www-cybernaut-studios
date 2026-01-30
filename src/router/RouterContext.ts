@@ -7,7 +7,7 @@ export const RouterContext = createContext<RouterState | null>(null);
 export function useRouter(): RouterState {
   const ctx = useContext(RouterContext);
   if (!ctx) {
-    throw new Error("useRouter must be inside <Router />");
+    throw new Error("useRouter must be used within RouterProvider");
   }
 
   return ctx;

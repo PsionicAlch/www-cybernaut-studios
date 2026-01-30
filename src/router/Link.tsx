@@ -1,6 +1,7 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 import { useRouter } from "./RouterContext";
+import { useTransition } from "../transition/TransitionContext";
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: string;
@@ -9,6 +10,7 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export function Link({ to, children, onClick, ...rest }: LinkProps) {
   const { navigate } = useRouter();
+  const { startExit } = useTransition();
 
   return (
     <a
@@ -16,7 +18,7 @@ export function Link({ to, children, onClick, ...rest }: LinkProps) {
       href={to}
       onClick={(e) => {
         e.preventDefault();
-        navigate(to);
+        startExit(() => navigate(to));
         onClick?.(e);
       }}
     >

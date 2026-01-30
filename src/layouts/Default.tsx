@@ -1,10 +1,14 @@
 import { Link } from "../router/Link";
+import { useTransition } from "../transition/TransitionContext";
 
 type DefaultLayoutProps = {
   children?: React.ReactNode;
 };
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
+  const { phase } = useTransition();
+  console.log("Transition phase:", phase);
+
   const year = new Date().getFullYear();
 
   return (
